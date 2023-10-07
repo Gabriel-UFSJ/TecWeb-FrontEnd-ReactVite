@@ -1,32 +1,46 @@
-import styles from './header.module.css'
-import { useNavigate } from 'react-router-dom'
-import UniLogo from '../../assets/Logo.png'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import UniLogo from '../../assets/Logo.png';
+
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 export function Header() {
+  const { isAuthenticated} = false;
 
-    const { isAuthenticated} = false;
-    const navigate = useNavigate();
-
-    return (
-        <header>
-            <div className='logo'>
-                <img src={UniLogo} alt='UniLogo' style={{width: '150px', height: '150px', paddingTop: '5px'}} />
-            </div>
-            <nav>
-                <ul>
-                    <li><a href='/'>Home</a></li>
-                    <li><a href='/'>About</a></li>
-                    <li><a href='/'>Contact</a></li>
-                </ul>
-            </nav>
-            <div className='login'>
-                {isAuthenticated ? (
-                    <button onClick={logout}>Logout</button>
-                ) : (
-                    <button onClick={(e) => navigate('/signIn')}>Login</button>
-                )}
-            </div>
-        </header>
-    );
+  return (
+    <Navbar expand="lg" className="bg-body-tertiary">
+      <Container fluid>
+        <img
+          src={UniLogo}
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          alt="UniLogo"
+        />
+        <Navbar.Brand href="/">Uni-Eventos</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: '200px' }}
+            navbarScroll
+          >
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="/contact">Contact</Nav.Link>
+          </Nav>
+          <div className='login'>
+                    {isAuthenticated ? (
+                        <Button variant="outline-success" onClick={logout}>Logout</Button>
+                    ) : (
+                        <Button variant="outline-success" onClick={(e) => navigate('/signIn')}>Login</Button>
+                    )}
+                </div>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
-
