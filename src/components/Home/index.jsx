@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-
+import styles from './home.module.css';
 import ErrorImg from '../../assets/error.png';
 
 export function Home() {
@@ -18,7 +18,7 @@ export function Home() {
 
             data.sort((a, b) => new Date(b.criadoEm) - new Date(a.criadoEm));
 
-            const latestEvents = data.slice(0, 5);
+            const latestEvents = data.slice(0, 9); // Mostra no máximo 9 eventos
 
             setEvents(latestEvents);
             setLoading(false);
@@ -29,13 +29,13 @@ export function Home() {
         }
     };
 
-
     useEffect(() => {
         fetchEvents();
     }, []);
 
     return (
-        <Carousel>
+        <div className='mt-1 pt-1'>
+        <Carousel >
             {loading ? (
                 <Carousel.Item>
                     <div className="spinner-border" role="status">
@@ -75,26 +75,38 @@ export function Home() {
                 ) : (
                     events.map((event) => (
                         <Carousel.Item key={event._id}>
-                            <img
-                                src={`http://localhost:3000/imagens/${event.image}`}
-                                alt={`Imagem do evento ${event.nome}`}
-                                display="block!important"
-                                className="mx-auto d-block"
-                                width="30%" />
-                            <Carousel.Caption>
-                                <h3>{event.nome}</h3>
-                                <p>{event.image}</p>
-                                <p>{event.descricao}</p>
-                                <p>{event.data}</p>
-                                <p>{event.hora}</p>
-                                <p>{event.local}</p>
-                                <p>{event.valor}</p>
-                                <a href={`/eventos/${event.id}`} className='btn btn-primary'>Ver mais</a>
-                            </Carousel.Caption>
+                            <div className='mx-auto d-block pb-5' style={{
+                                    width: '50rem',
+                                    transition: 'width 0.5s',
+                                }}>
+                                <div className='bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center d-flex justify-content-center' 
+                                    style={{height: '25rem'}}
+                                >
+                                    <div className="row">
+                                        <div className="col-md-6 mb-5">
+                                            <img
+                                                src={`http://localhost:3000/imagens/${event.image}`}
+                                                alt={`Imagem do evento ${event.nome}`}
+                                                className="w-75"
+                                            />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <p className="text-primary" style={{ fontSize: '1.5rem' }}>{event.data}</p>
+                                            <h5 className="text-dark">{event.nome}</h5>
+                                            <p className="text-dark">{event.descricao}</p>
+                                            <p className="text-dark">Hora: {event.hora}</p>
+                                            <p className="text-dark">Local: {event.local}</p>
+                                            <p className="text-dark">Valor: {event.valor}</p>
+                                            <a href={`/eventos/${event.id}`} className="btn btn-primary md-5">Ver mais</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </Carousel.Item>
                     ))
                 )
             )}
         </Carousel>
+        </div>
     );
 }

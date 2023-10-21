@@ -68,3 +68,12 @@ body {
 .carousel-control-next-icon:hover {
   color: var(--blue); /* Cor do ícone ao passar o mouse */
 }
+
+.dark-background {
+  background-color: rgba(0, 0, 0, 0.7); /* Cor de fundo escura com transparência */
+  padding: 10px; /* Espaçamento interno para o texto */
+  color: white; /* Cor do texto */
+}
+
+
+
