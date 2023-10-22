@@ -10,7 +10,7 @@ export function Home() {
 
     const fetchEvents = async () => {
         try {
-            const response = await fetch('http://localhost:3000/evento');
+            const response = await fetch('http://192.168.3.9:3000/evento');
             if (!response.ok) {
                 throw new Error('Não foi possível buscar os eventos.');
             }
@@ -85,7 +85,7 @@ export function Home() {
                                     <div className="row">
                                         <div className="col-md-6 mb-5">
                                             <img
-                                                src={`http://localhost:3000/imagens/${event.image}`}
+                                                src={`http://192.168.3.9:3000/imagens/${event.image}`}
                                                 alt={`Imagem do evento ${event.nome}`}
                                                 className="w-75"
                                             />
