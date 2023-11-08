@@ -8,7 +8,15 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 export function Header() {
-  const { isAuthenticated} = false;
+
+  const isAuthenticated = localStorage.getItem('token');
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  };
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -33,12 +41,15 @@ export function Header() {
             <Nav.Link href="/contact">Contact</Nav.Link>
           </Nav>
           <div className='login'>
-                    {isAuthenticated ? (
-                        <Button variant="outline-success" onClick={logout}>Logout</Button>
-                    ) : (
-                        <Button variant="outline-success" onClick={(e) => navigate('/signIn')}>Login</Button>
-                    )}
-                </div>
+            {isAuthenticated ? (
+              <div>
+              <Button variant="outline-success" onClick={logout}>Logout</Button>
+              <Button variant="outline-success" onClick={(e) => navigate('/EventRegister')}>Criar Evento</Button>
+              </div>
+            ) : (
+              <Button variant="outline-success" onClick={(e) => navigate('/login')}>Login</Button>
+            )}
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>

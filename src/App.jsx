@@ -5,11 +5,15 @@ import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { Home } from './components/Home'
 import { Testimonials } from './components/Testimonials'
+import { Login } from './components/Login'
+import { Register } from './components/Register'
+import {  EventRegister } from './components/EventRegister'
+
 
 function App() {
   return (
     <Router>
-      <Header />
+      <header><Header /></header>
       <Routes>
         <Route path="/" element={
           <div>
@@ -18,8 +22,11 @@ function App() {
             <Testimonials />
           </div>
         } />
+        <Route path="/EventRegister" element={<EventRegister />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
-      <Footer />
+      <footer><Footer /></footer>
     </Router>
   )
 }

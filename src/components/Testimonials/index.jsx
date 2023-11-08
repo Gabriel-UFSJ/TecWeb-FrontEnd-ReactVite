@@ -16,7 +16,6 @@ export function Testimonials() {
         throw new Error('Não foi possível buscar os depoimentos.');
       }
       const data = await response.json();
-      console.log(data)
       return data;
     } catch (error) {
       throw error;
@@ -43,7 +42,6 @@ export function Testimonials() {
     .sort((a, b) => new Date(b.data) - new Date(a.data)) // Ordena os depoimentos por data decrescente
     .slice(0, 5); // Pega os 3 depoimentos mais recentes
 
-  console.log(testimonials)
   return (
     <div className="d-flex justify-content-center align-items-center flex-wrap pt-5 pb-5">
       {loading ? (
