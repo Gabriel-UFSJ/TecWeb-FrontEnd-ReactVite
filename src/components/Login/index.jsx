@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
 
+import Swal from "sweetalert2";
+
 export function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,9 +22,21 @@ export function Login({ onLogin }) {
       const data = await response.json();
 
       if (data.error) {
-        alert(data.error);
+        //alert(data.error);
+        Swal.fire({
+          icon: "error",
+          title: "Erro ao fazer login!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } else {
-        alert("Usuário logado com sucesso!");
+        //alert("Usuário logado com sucesso!");
+        Swal.fire({
+          icon: "success",
+          title: "Usuário logado com sucesso!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/");
       }
       const token = data.token;

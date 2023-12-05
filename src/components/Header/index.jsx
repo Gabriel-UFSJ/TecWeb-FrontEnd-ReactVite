@@ -43,11 +43,11 @@ export function Header() {
           <div className='login'>
             {isAuthenticated ? (
               <div>
-              <Button variant="outline-success" onClick={logout}>Logout</Button>
-              <Button variant="outline-success" onClick={(e) => navigate('/EventRegister')}>Criar Evento</Button>
+                <Button style={{ marginRight: '8px' }} variant="outline-success" onClick={logout}>Logout</Button>
+                <Button style={{ marginLeft: '8px' }} className='ml-4' variant="outline-success" onClick={(e) => navigate('/EventRegister')}>Criar Evento</Button>
               </div>
             ) : (
-              <Button variant="outline-success" onClick={(e) => navigate('/login')}>Login</Button>
+              <Button className='ml-1' variant="outline-success" onClick={(e) => navigate('/login')}>Login</Button>
             )}
           </div>
         </Navbar.Collapse>

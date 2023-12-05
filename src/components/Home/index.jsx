@@ -22,6 +22,8 @@ export function Home() {
 
             setEvents(latestEvents);
             setLoading(false);
+
+            console.log('Eventos:', data);
         } catch (error) {
             console.error('Erro ao buscar eventos:', error);
             setError('Ocorreu um erro ao buscar os eventos.');
@@ -97,7 +99,7 @@ export function Home() {
                                             <p className="text-dark">Hora: {event.hora}</p>
                                             <p className="text-dark">Local: {event.local}</p>
                                             <p className="text-dark">Valor: {event.valor}</p>
-                                            <a href={`/eventos/${event.id}`} className="btn btn-primary md-5">Ver mais</a>
+                                            <a href={`/eventos/${event._id}`} className="btn btn-primary md-5">Ver mais</a>
                                         </div>
                                     </div>
                                 </div>

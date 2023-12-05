@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./register.module.css";
 
+import Swal from "sweetalert2";
+
 export function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,9 +22,21 @@ export function Register() {
       const data = await response.json();
       console.log(data);
       if (data.error) {
-        alert(data.error);
+        //alert(data.error);
+        Swal.fire({
+          icon: "error",
+          title: "Erro ao cadastrar usuário!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } else {
-        alert("Usuário cadastrado com sucesso!");
+        //alert("Usuário cadastrado com sucesso!");
+        Swal.fire({
+          icon: "success",
+          title: "Usuário cadastrado com sucesso!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/");
       }
     } catch (err) {

@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import ErrorImg from '../../assets/error.png';
 
+import Swal from 'sweetalert2'
+
 export function EventRegister() {
     const [evento, setEvento] = useState({
         nome: '',
@@ -77,15 +79,33 @@ export function EventRegister() {
             console.log(data);
 
             if (data.error) {
-                alert(data.error);
+                //alert(data.error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao cadastrar evento!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
             else {
-                alert('Evento cadastrado com sucesso!');
+                //alert('Evento cadastrado com sucesso!');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Evento cadastrado com sucesso!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
                 navigate('/');
             }
         } catch (error) {
             console.log(error);
-            alert('Erro ao cadastrar evento!');
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro ao cadastrar evento!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            //alert('Erro ao cadastrar evento!');
         }
     };
 
